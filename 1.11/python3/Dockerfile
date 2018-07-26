@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.6-slim
 
 # create directory which can be a place for generated static content
 # volume can be used to serve these files with a webserver
@@ -6,9 +6,7 @@ RUN mkdir -p /var/www/static
 VOLUME /var/www/static
 
 # create directory for application source code
-# volume can be used for live-reload during development
 RUN mkdir -p /usr/django/app
-VOLUME /usr/django/app
 
 # create user which will be used to run gunicorn
 RUN groupadd -r django && useradd --no-log-init -r -g django django
